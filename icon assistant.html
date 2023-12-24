@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Web Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+<style>
+  body {
+    font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+	height: 540px;
+	width: 900px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+  .option {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .option:hover {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+  }
+  .option.selected {
+    border-color: #28a745; /* Green border */
+    background-color: #e6f9ec; /* Light green background */
+  }
+  .option.selected::after {
+    content: '✓'; /* Checkmark */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #28a745; /* Green checkmark */
+  }
+  .icon {
+    width: 100px; /* Increased size */
+    height: 100px; /* Increased size */
+    margin-bottom: 10px;
+    border: 2px solid #ccc; /* Add border */
+    border-radius: 10px; /* Rounded corners */
+  }
+  p {
+    font-size: 16px; /* Larger font size */
+    line-height: 1.6; /* Improved line spacing */
+    letter-spacing: 0.5px; /* Slight letter spacing */
+  }
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Repeat this div for each option -->
+  <div class="option" data-question="1" data-answer="1" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+  <div class="option" data-question="1" data-answer="2" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+  <div class="option" data-question="1" data-answer="3" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+  <div class="option" data-question="1" data-answer="4" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+  <div class="option" data-question="1" data-answer="5" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+  <div class="option" data-question="1" data-answer="6" onclick="selectOption(event, this)">
+    <img class="icon" src="icon-path.png" alt="Icon description">
+    <p>Description A</p>
+  </div>
+</div>
+
+<script>
+  function selectOption(event, element) {
+    if(event) event.preventDefault();
+    
+    // Deselect all other options
+    let options = document.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    
+    // Select the current option
+    element.classList.add('selected');
+
+    // Retrieve questionNum and answerNum from the element's data attributes
+    let questionNum = element.getAttribute('data-question');
+    let answerNum = element.getAttribute('data-answer');
+
+    // Call setAnswer with the retrieved values
+    setAnswer(questionNum, answerNum);
+  }
+
+  function setAnswer(questionNum, answerNum) {
+    // Log the question and answer numbers to the console
+    console.log(`Question: ${questionNum}, Answer: ${answerNum}`);
+  }
+</script>
+
+</body>
+</html>
